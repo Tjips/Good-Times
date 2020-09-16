@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace GoodTimes.Data.Migrations
+namespace GoodTimes.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class webMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,7 +51,7 @@ namespace GoodTimes.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -73,7 +72,7 @@ namespace GoodTimes.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -153,6 +152,35 @@ namespace GoodTimes.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "reservering",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    voornaam = table.Column<string>(nullable: false),
+                    achternaam = table.Column<string>(nullable: false),
+                    aantal = table.Column<int>(nullable: false),
+                    email = table.Column<string>(nullable: false),
+                    telefoon = table.Column<string>(nullable: false),
+                    datum = table.Column<DateTime>(nullable: false),
+                    begintijd = table.Column<TimeSpan>(nullable: false),
+                    eindtijd = table.Column<TimeSpan>(nullable: false),
+                    aangemaakt = table.Column<DateTime>(nullable: false),
+                    opmerking = table.Column<string>(nullable: true),
+                    medewerkerId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_reservering", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_reservering_AspNetUsers_medewerkerId",
+                        column: x => x.medewerkerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +219,11 @@ namespace GoodTimes.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_reservering_medewerkerId",
+                table: "reservering",
+                column: "medewerkerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -209,6 +242,9 @@ namespace GoodTimes.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "reservering");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

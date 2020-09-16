@@ -12,5 +12,6 @@ namespace GoodTimes.Data
             : base(options)
         {
         }
+        public DbSet<GoodTimes.Models.reservering> reservering { get; set; }
     }
 }

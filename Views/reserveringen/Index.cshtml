@@ -1,0 +1,92 @@
+﻿@model IEnumerable<GoodTimes.Models.reservering>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="welkom">
+    <h1>Reserveringsoverzicht</h1>
+
+    <p>
+        <a asp-action="Create">Reservering aanmaken</a>
+    </p>
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.voornaam)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.achternaam)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.aantal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.datum)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.begintijd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.eindtijd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.aangemaakt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.opmerking)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.medewerker)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td title="Telefoon: @Html.DisplayFor(modelItem => item.telefoon) Email: @Html.DisplayFor(modelItem => item.email)">
+                        @Html.DisplayFor(modelItem => item.voornaam)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.achternaam)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.aantal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.datum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.begintijd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.eindtijd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.aangemaakt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.opmerking)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.medewerker.Id)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Bewerk</a><br />
+                        <a asp-action="Delete" asp-route-id="@item.Id">Verwijder</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}

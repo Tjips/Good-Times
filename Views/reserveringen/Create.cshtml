@@ -1,0 +1,91 @@
+﻿@model GoodTimes.Models.reservering
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="welkom">
+    <h1>Reservering aanmaken</h1>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="voornaam" class="control-label"></label>
+                    <input asp-for="voornaam" class="form-control" />
+                    <span asp-validation-for="voornaam" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="achternaam" class="control-label"></label>
+                    <input asp-for="achternaam" class="form-control" />
+                    <span asp-validation-for="achternaam" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="aantal" class="control-label"></label>
+                    <input asp-for="aantal" class="form-control" />
+                    <span asp-validation-for="aantal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="email" class="control-label"></label>
+                    <input asp-for="email" class="form-control" />
+                    <span asp-validation-for="email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="telefoon" class="control-label"></label>
+                    <input asp-for="telefoon" class="form-control" />
+                    <span asp-validation-for="telefoon" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="datum" class="control-label"></label>
+                    <input asp-for="datum" class="form-control" />
+                    <span asp-validation-for="datum" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="begintijd" class="control-label"></label>
+                    <input asp-for="begintijd" class="form-control" />
+                    <span asp-validation-for="begintijd" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="eindtijd" class="control-label"></label>
+                    <input asp-for="eindtijd" class="form-control" />
+                    <span asp-validation-for="eindtijd" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="aangemaakt" class="control-label"></label>
+                    <input asp-for="aangemaakt" class="form-control" />
+                    <span asp-validation-for="aangemaakt" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="opmerking" class="control-label"></label>
+                    <textarea asp-for="opmerking" class="form-control"></textarea>
+                    <span asp-validation-for="opmerking" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Terug</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    $("#begintijd").blur(function () {
+        var eindtijd = $("#begintijd").val();
+
+        arr = eindtijd.split(':')
+        hour = $.trim(arr[0]);
+        min = $.trim(arr[1]);
+        hour += 2;
+        alert(hour + ":" + min);
+        document.getElementById("eindtijd").value = hour + ":" + min;
+    });
+</script>

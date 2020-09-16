@@ -1,0 +1,84 @@
+﻿@model GoodTimes.Models.reservering
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>reservering</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.voornaam)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.voornaam)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.achternaam)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.achternaam)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.aantal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.aantal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.telefoon)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.telefoon)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.datum)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.datum)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.begintijd)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.begintijd)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.eindtijd)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.eindtijd)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.aangemaakt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.aangemaakt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.opmerking)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.opmerking)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.medewerker)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.medewerker.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
