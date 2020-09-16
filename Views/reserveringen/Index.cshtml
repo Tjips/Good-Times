@@ -36,9 +36,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.opmerking)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.medewerker)
-                </th>
                 <th></th>
             </tr>
         </thead>
@@ -67,11 +64,8 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.aangemaakt)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.opmerking)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.medewerker.Id)
+                    <td title="@Html.DisplayFor(modelItem => item.opmerking)">
+                        @Html.DisplayFor(modelItem => item.opmerkingTrimmed)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">Bewerk</a><br />

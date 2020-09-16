@@ -32,8 +32,17 @@ namespace GoodTimes.Models
         public DateTime aangemaakt { get; set; }
         [DataType(DataType.MultilineText)]
         public string opmerking { get; set; }
-
-
+        public int opmerkingLimit = 14;
+        public string opmerkingTrimmed
+        {
+            get
+            {
+                if (this.opmerking.Length > this.opmerkingLimit)
+                    return this.opmerking.Substring(0, this.opmerkingLimit) + "...";
+                else
+                    return this.opmerking;
+            }
+        }
         public string medewerkerId { get; set; }
         public IdentityUser medewerker { get; set; }
     }
