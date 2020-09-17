@@ -1,17 +1,23 @@
 ﻿@model GoodTimes.Models.menukaart
 
-<h1>@Html.DisplayFor(model => model.Naam)</h1>
+<h1>Menukaart: @Html.DisplayFor(model => model.Naam)</h1>
+
+<div class="menu-container">
+    <div class="kaas">
+        <a class="menu-button" asp-area="" asp-controller="products" asp-action="create" asp-route-id="@Html.DisplayFor(model => model.Id)">Product toevoegen</a>
+        <a class="menu-button" asp-area="" asp-controller="categories" asp-action="create" asp-route-id="@Html.DisplayFor(model => model.Id)">Categorie toevoegen</a>
+    </div>
+</div>
 
 @foreach (var categorie in Model.categories)
 {
     <div class="category-row">
-        <div class="product-item">
-            <p class="categories-text-title">@categorie.Naam</p>
-        </div>
-
-        <table class="table">
+        <table class="table" id="myTable">
             <thead>
                 <tr>
+                    <th>
+                        Categorie
+                    </th>
                     <th>
                         Naam
                     </th>
@@ -21,20 +27,16 @@
                     <th>
                         Prijs
                     </th>
-                    <th>
-                        Volgorde
-                    </th>
-                    <th>
-                        Categorie
-                    </th>
                     <th></th>
                 </tr>
             </thead>
-            @foreach (var product in categorie.products)
+            @foreach (var product in ViewBag.products)
             {
                 <tbody>
-                    {
                     <tr>
+                        <td>
+                            @product.categorie.Naam
+                        </td>
                         <td>
                             @product.Naam
                         </td>
@@ -45,20 +47,20 @@
                             @product.Prijs
                         </td>
                         <td>
-                            @product.Volgorde
-                        </td>
-                        <td>
-                            @product.categorie
+                            <a asp-action="Edit" asp-route-id="@product.Id">Bewerk</a><br />
+                            <a asp-action="Delete" asp-route-id="@product.Id">Verwijder</a>
                         </td>
                     </tr>
-                    }
                 </tbody>
             }
         </table>
     </div>
 }
 
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}

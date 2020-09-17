@@ -34,11 +34,15 @@ namespace GoodTimes.Controllers
             }
 
             var menukaart = await _context.menukaart
+                .Include(i => i.categories)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (menukaart == null)
             {
                 return NotFound();
             }
+
+            var products = await _context.product.Where(b => b.categorieId == id).ToListAsync();
+            ViewBag.products = products;
 
             return View(menukaart);
         }
