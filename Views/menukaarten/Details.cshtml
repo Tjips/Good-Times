@@ -1,0 +1,17 @@
+﻿@model GoodTimes.Models.menukaart
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@Html.DisplayFor(model => model.Naam)</h1>
+
+@foreach (var categorie in Model.categories)
+{
+    <p>@categorie.Naam</p>
+}
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

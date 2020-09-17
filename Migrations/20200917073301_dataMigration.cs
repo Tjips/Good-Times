@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GoodTimes.Migrations
 {
-    public partial class webMigration : Migration
+    public partial class dataMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +44,19 @@ namespace GoodTimes.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "menukaart",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Naam = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_menukaart", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -181,6 +194,50 @@ namespace GoodTimes.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "categorie",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Naam = table.Column<string>(nullable: false),
+                    MenukaartId = table.Column<int>(nullable: false),
+                    volgeorde = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_categorie", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_categorie_menukaart_MenukaartId",
+                        column: x => x.MenukaartId,
+                        principalTable: "menukaart",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "product",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Naam = table.Column<string>(nullable: false),
+                    Omschrijving = table.Column<string>(nullable: false),
+                    Prijs = table.Column<double>(nullable: false),
+                    Volgorde = table.Column<int>(nullable: false),
+                    categorieId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_product", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_product_categorie_categorieId",
+                        column: x => x.categorieId,
+                        principalTable: "categorie",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -221,6 +278,16 @@ namespace GoodTimes.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_categorie_MenukaartId",
+                table: "categorie",
+                column: "MenukaartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_product_categorieId",
+                table: "product",
+                column: "categorieId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_reservering_medewerkerId",
                 table: "reservering",
                 column: "medewerkerId");
@@ -244,13 +311,22 @@ namespace GoodTimes.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "product");
+
+            migrationBuilder.DropTable(
                 name: "reservering");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "categorie");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "menukaart");
         }
     }
 }

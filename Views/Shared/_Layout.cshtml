@@ -24,14 +24,23 @@
         <a class="nav-button" asp-area="" asp-controller="reserveringen" asp-action="#">Nieuwe bestelling</a>
         <a class="nav-button" asp-area="" asp-controller="reserveringen" asp-action="#">Bestellingsoverzicht</a>
         <a class="nav-button" asp-area="" asp-controller="reserveringen" asp-action="#">Keukenoverzicht</a>
-        <a class="nav-button" asp-area="" asp-controller="reserveringen" asp-action="#">Menukaart aanpassen</a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn dropdowna">Menukaart aanpassen</a>
+                <div class="dropdown-content">
+                    <a class="nav-button" asp-area="" asp-controller="menukaarten" asp-action="details" asp-route-id="3">Lunchkaart</a>
+                    <a class="nav-button" asp-area="" asp-controller="menukaarten" asp-action="details" asp-route-id="1">Dineraart</a>
+                    <a class="nav-button" asp-area="" asp-controller="menukaarten" asp-action="details" asp-route-id="2">Drankenkaart</a>
+                </div>
+        </div>
         <a class="nav-button" asp-area="" asp-controller="reserveringen" asp-action="#">Accountbeheer</a>
         <a class="uitlog-button" asp-area="Identity" asp-page="/Account/Logout">Uitloggen</a>
     </div>
     <div class="content-container">
         <div class="container">
             <main role="main" class="pb-3">
-                @RenderBody()
+                <div class="welkom">
+                    @RenderBody()
+                </div>
             </main>
         </div>
     </div>

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoodTimes.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200916133858_dataMigration")]
+    [Migration("20200917073301_dataMigration")]
     partial class dataMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,77 @@ namespace GoodTimes.Migrations
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("GoodTimes.Models.categorie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MenukaartId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Naam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("volgeorde")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenukaartId");
+
+                    b.ToTable("categorie");
+                });
+
+            modelBuilder.Entity("GoodTimes.Models.menukaart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Naam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("menukaart");
+                });
+
+            modelBuilder.Entity("GoodTimes.Models.product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Naam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Omschrijving")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Prijs")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Volgorde")
+                        .HasColumnType("int");
+
+                    b.Property<int>("categorieId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("categorieId");
+
+                    b.ToTable("product");
+                });
 
             modelBuilder.Entity("GoodTimes.Models.reservering", b =>
                 {
@@ -270,6 +341,24 @@ namespace GoodTimes.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("GoodTimes.Models.categorie", b =>
+                {
+                    b.HasOne("GoodTimes.Models.menukaart", "menukaart")
+                        .WithMany("categories")
+                        .HasForeignKey("MenukaartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GoodTimes.Models.product", b =>
+                {
+                    b.HasOne("GoodTimes.Models.categorie", "categorie")
+                        .WithMany("products")
+                        .HasForeignKey("categorieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GoodTimes.Models.reservering", b =>
