@@ -75,8 +75,8 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script>
-        $("#Begintijd").blur(function () {
-            var eindtijd = $("#Begintijd").val();
+        $("#begintijd").blur(function () {
+            var eindtijd = $("#begintijd").val();
 
 
 
@@ -84,8 +84,7 @@
             hour = parseInt($.trim(arr[0]));
             min = $.trim(arr[1]);
             hour += 2;
-            alert(hour + ":" + min)
-            document.getElementById("Eindtijd").value = hour + ":" + min;
+            document.getElementById("eindtijd").value = hour + ":" + min;
         });
     </script>
 }

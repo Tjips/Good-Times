@@ -127,7 +127,7 @@ body {
 .title-crop{
     float: left;
     padding-top: 20px;
-    padding-left: 30px;
+    padding-left: 40px;
 }
 
 .login-layout{
@@ -137,7 +137,7 @@ body {
 }
 
 .welkom{
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .login-opmaak{
