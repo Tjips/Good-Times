@@ -1,14 +1,61 @@
 ﻿@model GoodTimes.Models.menukaart
 
-@{
-    ViewData["Title"] = "Details";
-}
-
 <h1>@Html.DisplayFor(model => model.Naam)</h1>
 
 @foreach (var categorie in Model.categories)
 {
-    <p>@categorie.Naam</p>
+    <div class="category-row">
+        <div class="product-item">
+            <p class="categories-text-title">@categorie.Naam</p>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Naam
+                    </th>
+                    <th>
+                        Omschrijving
+                    </th>
+                    <th>
+                        Prijs
+                    </th>
+                    <th>
+                        Volgorde
+                    </th>
+                    <th>
+                        Categorie
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (var product in categorie.products)
+            {
+                <tbody>
+                    {
+                    <tr>
+                        <td>
+                            @product.Naam
+                        </td>
+                        <td>
+                            @product.Omschrijving
+                        </td>
+                        <td>
+                            @product.Prijs
+                        </td>
+                        <td>
+                            @product.Volgorde
+                        </td>
+                        <td>
+                            @product.categorie
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            }
+        </table>
+    </div>
 }
 
 <div>
