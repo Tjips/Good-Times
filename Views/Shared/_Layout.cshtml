@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -26,14 +30,15 @@
         <a class="nav-button" asp-area="" asp-controller="reserveringen" asp-action="#">Keukenoverzicht</a>
         <div class="dropdown">
             <a href="#" class="dropbtn dropdowna">Menukaart aanpassen</a>
-                <div class="dropdown-content">
-                    <a class="nav-button" asp-area="" asp-controller="menukaarten" asp-action="details" asp-route-id="3">Lunchkaart</a>
-                    <a class="nav-button" asp-area="" asp-controller="menukaarten" asp-action="details" asp-route-id="1">Dinerkaart</a>
-                    <a class="nav-button" asp-area="" asp-controller="menukaarten" asp-action="details" asp-route-id="2">Drankenkaart</a>
-                </div>
+            <div class="dropdown-content">
+                <a class="nav-button" asp-area="" asp-controller="menukaarten" asp-action="details" asp-route-id="3">Lunchkaart</a>
+                <a class="nav-button" asp-area="" asp-controller="menukaarten" asp-action="details" asp-route-id="1">Dinerkaart</a>
+                <a class="nav-button" asp-area="" asp-controller="menukaarten" asp-action="details" asp-route-id="2">Drankenkaart</a>
+            </div>
         </div>
-        <a class="nav-button" asp-area="" asp-controller="reserveringen" asp-action="#">Accountbeheer</a>
+        <a class="nav-button" asp-area="Identity" asp-page="/Account/Manage/Index">Accountbeheer</a>
         <a class="uitlog-button" asp-area="Identity" asp-page="/Account/Logout">Uitloggen</a>
+        <p class="user_login">Ingelogd als: @User.Identity.Name</p>
     </div>
     <div class="content-container">
         <div class="container">

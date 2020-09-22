@@ -267,3 +267,9 @@ body {
         color: black;
         text-decoration: none;
     }
+
+.user_login{
+    text-align: center;
+    color: white;
+    margin-top: 14px;
+}
