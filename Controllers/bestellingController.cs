@@ -46,11 +46,12 @@ namespace GoodTimes.Controllers
         }
 
         // GET: bestelling/Create
-        public async Task<IActionResult> CreateAsync()
+        public async Task<IActionResult> Create()
 
-        {
-            var products = await _context.product.Where(b => b.categorieId == Id).ToListAsync();
-            ViewBag.products = products;
+        {          
+            ViewBag.menukaart = await _context.menukaart.ToListAsync();
+            ViewBag.categorie = await _context.categorie.ToListAsync();
+            ViewBag.products = await _context.product.ToListAsync();
 
             return View();
         }

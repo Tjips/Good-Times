@@ -7,49 +7,42 @@
 <h1>Bestelling aanmaken</h1>
 
 <hr />
-
-    <button class="accordion">Lunchkaart</button>
-    <div class="panel panel_parent">
-        <div class="accordion_content">
-            
-        </div>
-    </div>
-
-    <button class="accordion">Dinerkaart</button>
-    <div class="panel panel_parent">
-        <div class="accordion_content">
-            <p>Producten 2</p>
-            <p>Producten 2</p>
-            <p>Producten 2</p>   
-        </div>
-    </div>
-
-    <button class="accordion">Drankenkaart</button>
-    <div class="panel panel_parent">
-        <div class="accordion_content">
-            <p>Producten 3</p>
-            <p>Producten 3</p>
-            <p>Producten 3</p>
-            <p>Producten 3</p>
-            <p>Producten 3</p>
-            <p>Producten 3</p>
-        </div>      
-    </div>
-
 <div class="bestelling_select">
     <div class="row">
         <div class="col-md-4">
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="Aantal" class="control-label"></label>
-                    <input asp-for="Aantal" class="form-control" />
-                    <span asp-validation-for="Aantal" class="text-danger"></span>
-                </div>
-                <div class="form-group">
                     <label asp-for="Tafel" class="control-label"></label>
                     <input asp-for="Tafel" class="form-control" />
                     <span asp-validation-for="Tafel" class="text-danger"></span>
+                </div>
+
+                @foreach (var item in ViewBag.menukaart as List<menukaart>)
+                {
+                    <button class="accordion">@item.Naam</button>
+                    <div class="panel panel_parent">
+                        <div class="accordion_content">
+                            @foreach (var categorie in ViewBag.categorie as List<categorie>)
+                            {
+                                @if (categorie.MenukaartId == item.Id)
+                                {
+                                    @foreach (var product in ViewBag.products as List<product>)
+                                    {
+                                        @if (product.categorieId == categorie.Id)
+                                        {
+                                            <input type="radio" asp-for="Gerecht" value="@product.Naam"> @product.Naam<br />
+                                        }
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    <label asp-for="Aantal" class="control-label"></label>
+                    <input asp-for="Aantal" class="form-control" />
+                    <span asp-validation-for="Aantal" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Tijd" class="control-label"></label>
@@ -61,21 +54,12 @@
                     <textarea asp-for="Opmerking" class="form-control"></textarea>
                     <span asp-validation-for="Opmerking" class="text-danger"></span>
                 </div>
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Acties" /> @Html.DisplayNameFor(model => model.Acties)
-                    </label>
-                </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
             </form>
         </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
