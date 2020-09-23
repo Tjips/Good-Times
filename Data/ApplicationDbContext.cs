@@ -36,6 +36,7 @@ namespace GoodTimes.Data
         public DbSet<GoodTimes.Models.menukaart> menukaart { get; set; }
         public DbSet<GoodTimes.Models.categorie> categorie { get; set; }
         public DbSet<GoodTimes.Models.product> product { get; set; }
+        public DbSet<GoodTimes.Models.bestelling> bestelling { get; set; }
     }
 
 

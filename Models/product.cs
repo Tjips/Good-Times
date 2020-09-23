@@ -19,5 +19,6 @@ namespace GoodTimes.Models
         public int Volgorde { get; set; }
         public categorie categorie { get; set; }
         public int categorieId { get; set; }
+        public bestelling bestelling { get; set; }
     }
 }
