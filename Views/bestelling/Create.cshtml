@@ -9,7 +9,18 @@
 <h4>bestelling</h4>
 <hr />
 
-
+<button onclick="myFunction()">Dinerkaart</button>
+<div id="myDIV">
+    Mark's kwark in samenwerking met Tamer's taarten
+</div>
+<button onclick="myFunction2()">Lunchkaart</button>
+<div id="myDIV2">
+    Mark's kwark in samenwerking met Tamer's taarten
+</div>
+<button onclick="myFunction3()">Drankenkaart</button>
+<div id="myDIV3">
+    Mark's kwark in samenwerking met Tamer's taarten
+</div>
 
 <div class="row">
     <div class="col-md-4">
@@ -58,4 +69,33 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myDIV");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        function myFunction2() {
+            var x = document.getElementById("myDIV2");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        function myFunction3() {
+            var x = document.getElementById("myDIV3");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
 }
