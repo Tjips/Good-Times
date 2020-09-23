@@ -23,7 +23,7 @@ namespace GoodTimes.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.bestelling.Include(p => p.Products);
-            return View(await _context.bestelling.ToListAsync());
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: bestelling/Details/5
@@ -35,6 +35,7 @@ namespace GoodTimes.Controllers
             }
 
             var bestelling = await _context.bestelling
+                .Include(p => p.Products)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (bestelling == null)
             {
@@ -45,8 +46,12 @@ namespace GoodTimes.Controllers
         }
 
         // GET: bestelling/Create
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync()
+
         {
+            var products = await _context.product.Where(b => b.categorieId == Id).ToListAsync();
+            ViewBag.products = products;
+
             return View();
         }
 

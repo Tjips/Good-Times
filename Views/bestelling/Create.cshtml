@@ -4,62 +4,73 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Bestelling aanmaken</h1>
 
-<h4>bestelling</h4>
 <hr />
 
-<button onclick="myFunction()">Dinerkaart</button>
-<div id="myDIV">
-    Mark's kwark in samenwerking met Tamer's taarten
-</div>
-<button onclick="myFunction2()">Lunchkaart</button>
-<div id="myDIV2">
-    Mark's kwark in samenwerking met Tamer's taarten
-</div>
-<button onclick="myFunction3()">Drankenkaart</button>
-<div id="myDIV3">
-    Mark's kwark in samenwerking met Tamer's taarten
-</div>
+    <button class="accordion">Lunchkaart</button>
+    <div class="panel panel_parent">
+        <div class="accordion_content">
+            
+        </div>
+    </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Gerecht" class="control-label"></label>
-                <input asp-for="Gerecht" class="form-control" />
-                <span asp-validation-for="Gerecht" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Aantal" class="control-label"></label>
-                <input asp-for="Aantal" class="form-control" />
-                <span asp-validation-for="Aantal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tafel" class="control-label"></label>
-                <input asp-for="Tafel" class="form-control" />
-                <span asp-validation-for="Tafel" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tijd" class="control-label"></label>
-                <input asp-for="Tijd" class="form-control" />
-                <span asp-validation-for="Tijd" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Opmerking" class="control-label"></label>
-                <textarea asp-for="Opmerking" class="form-control"></textarea>
-                <span asp-validation-for="Opmerking" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Acties" /> @Html.DisplayNameFor(model => model.Acties)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <button class="accordion">Dinerkaart</button>
+    <div class="panel panel_parent">
+        <div class="accordion_content">
+            <p>Producten 2</p>
+            <p>Producten 2</p>
+            <p>Producten 2</p>   
+        </div>
+    </div>
+
+    <button class="accordion">Drankenkaart</button>
+    <div class="panel panel_parent">
+        <div class="accordion_content">
+            <p>Producten 3</p>
+            <p>Producten 3</p>
+            <p>Producten 3</p>
+            <p>Producten 3</p>
+            <p>Producten 3</p>
+            <p>Producten 3</p>
+        </div>      
+    </div>
+
+<div class="bestelling_select">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Aantal" class="control-label"></label>
+                    <input asp-for="Aantal" class="form-control" />
+                    <span asp-validation-for="Aantal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Tafel" class="control-label"></label>
+                    <input asp-for="Tafel" class="form-control" />
+                    <span asp-validation-for="Tafel" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Tijd" class="control-label"></label>
+                    <input asp-for="Tijd" class="form-control" />
+                    <span asp-validation-for="Tijd" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Opmerking" class="control-label"></label>
+                    <textarea asp-for="Opmerking" class="form-control"></textarea>
+                    <span asp-validation-for="Opmerking" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Acties" /> @Html.DisplayNameFor(model => model.Acties)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -70,32 +81,82 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
-    <script>
-        function myFunction() {
-            var x = document.getElementById("myDIV");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
+<script>
+  // W3C's JS Code
+  var acc = document.getElementsByClassName("accordion");
+  var i;
 
-        function myFunction2() {
-            var x = document.getElementById("myDIV2");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
+  // Open the first accordion
+  var firstAccordion = acc[0];
+  var firstPanel = firstAccordion.nextElementSibling;
+  firstAccordion.classList.add("active");
+  firstPanel.style.maxHeight = firstPanel.scrollHeight + "px";
 
-        function myFunction3() {
-            var x = document.getElementById("myDIV3");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
+  // Add onclick listener to every accordion element
+  for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function() {
+      // For toggling purposes detect if the clicked section is already "active"
+      var isActive = this.classList.contains("active");
+
+      // Close all accordions
+      var allAccordions = document.getElementsByClassName("accordion");
+      for (j = 0; j < allAccordions.length; j++) {
+        // Remove active class from section header
+        allAccordions[j].classList.remove("active");
+
+        // Remove the max-height class from the panel to close it
+        var panel = allAccordions[j].nextElementSibling;
+        var maxHeightValue = getStyle(panel, "maxHeight");
+
+      if (maxHeightValue !== "0px") {
+          panel.style.maxHeight = null;
         }
-    </script>
+      }
+
+      // Toggle the clicked section using a ternary operator
+      isActive ? this.classList.remove("active") : this.classList.add("active");
+
+      // Toggle the panel element
+      var panel = this.nextElementSibling;
+      var maxHeightValue = getStyle(panel, "maxHeight");
+
+      if (maxHeightValue !== "0px") {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    };
+  }
+
+  // Cross-browser way to get the computed height of a certain element. Credit to on StackOverflow (http://stackoverflow.com/a/2531934/7926565)
+  function getStyle(el, styleProp) {
+  var value, defaultView = (el.ownerDocument || document).defaultView;
+  // W3C standard way:
+  if (defaultView && defaultView.getComputedStyle) {
+    // sanitize property name to css notation
+    // (hypen separated words eg. font-Size)
+    styleProp = styleProp.replace(/([A-Z])/g, "-$1").toLowerCase();
+    return defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
+  } else if (el.currentStyle) { // IE
+    // sanitize property name to camelCase
+    styleProp = styleProp.replace(/\-(\w)/g, function(str, letter) {
+      return letter.toUpperCase();
+    });
+    value = el.currentStyle[styleProp];
+    // convert other units to pixels on IE
+    if (/^\d+(em|pt|%|ex)?$/i.test(value)) {
+      return (function(value) {
+        var oldLeft = el.style.left, oldRsLeft = el.runtimeStyle.left;
+        el.runtimeStyle.left = el.currentStyle.left;
+        el.style.left = value || 0;
+        value = el.style.pixelLeft + "px";
+        el.style.left = oldLeft;
+        el.runtimeStyle.left = oldRsLeft;
+        return value;
+      })(value);
+    }
+    return value;
+  }
+}
+</script>
 }

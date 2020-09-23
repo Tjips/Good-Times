@@ -273,3 +273,69 @@ body {
     color: white;
     margin-top: 14px;
 }
+
+.accordion_row {
+    width: 100%;
+    display: inline-block;
+}
+
+button.accordion {
+    border: solid 1px black;
+    color: black;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 0%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+    float: left;
+    transition: 0.4s;
+    display: inline-block;
+}
+
+    button.accordion.active, button.accordion:hover {
+        background-color: #ddd;
+    }
+
+    button.accordion:after {
+        content: '\002B';
+        color: #777;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
+
+    button.accordion.active:after {
+        content: "\2212";
+    }
+
+.panel_parent {
+    position: absolute;
+    width: 100%;
+    display: block;
+}
+
+div.panel {
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    width: 100%;
+    display: block;
+    position: relative;
+    height: 100%;
+}
+
+.bestelling_select {
+    display: block;
+    width: 100%;
+    height: auto !important;
+    padding-top: 5%;
+}
