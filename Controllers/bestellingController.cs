@@ -67,7 +67,7 @@ namespace GoodTimes.Controllers
             {
                 _context.Add(bestelling);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Create));
             }
             return View(bestelling);
         }
