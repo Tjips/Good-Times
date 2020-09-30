@@ -43,6 +43,9 @@ namespace GoodTimes.Controllers
                 return NotFound();
             }
 
+            ViewBag.bestelling = await _context.bestelling.ToListAsync();
+            ViewBag.bon = await _context.bon.ToListAsync();
+
             return View(bon);
         }
 
@@ -65,9 +68,9 @@ namespace GoodTimes.Controllers
             {
                 _context.Add(bon);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", new { id = bon.Id });
             }
-            return View(bon);
+            return View();
         }
 
         // GET: bon/Edit/5

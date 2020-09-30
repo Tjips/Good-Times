@@ -14,7 +14,7 @@
             <div class="form-group">
                 @foreach (var item in ViewBag.bestelling as List<bestelling>)
                 {
-                <p><input type="radio" asp-for="Tafelnummer" value="@item.Tafel"> Tafel @item.Tafel</p>
+                    <p><input type="radio" asp-for="Tafelnummer" value="@item.Tafel"> Tafel @item.Tafel</p>
                 }
             </div>
             <br />
