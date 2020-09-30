@@ -22,6 +22,7 @@ namespace GoodTimes.Controllers
         // GET: bon
         public async Task<IActionResult> Index()
         {
+            var applicationDbContext = _context.bon.Include(p => p.Tafel);
             return View(await _context.bon.ToListAsync());
         }
 
@@ -34,7 +35,9 @@ namespace GoodTimes.Controllers
             }
 
             var bon = await _context.bon
+                .Include(p => p.Tafel)
                 .FirstOrDefaultAsync(m => m.Id == id);
+                
             if (bon == null)
             {
                 return NotFound();

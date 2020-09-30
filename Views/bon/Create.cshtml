@@ -4,28 +4,29 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Bon aanmaken</h1>
 
-<h4>bon</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @foreach (var tafel in ViewBag.bestelling as List<bestelling>)
-            {
-                <input type="radio" asp-for="Tafel" value="@tafel.Tafel"> @tafel.Tafel<br />
-            }
+            <div class="form-group">
+                @foreach (var tafel in ViewBag.bestelling as List<bestelling>)
+                {
+                    <input type="radio" asp-for="Tafelnummer" value="@tafel.Tafel"> @tafel.Tafel<br />
+                }
+            </div>
             <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Bon printen" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Terug</a>
 </div>
 
 @section Scripts {

@@ -8,6 +8,7 @@ namespace GoodTimes.Models
     public class bon
     {
         public int Id { get; set; }
+        public int Tafelnummer { get; set; }
         public List<bestelling> Tafel { get; set; }
     }
 }
