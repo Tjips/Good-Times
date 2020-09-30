@@ -21,5 +21,6 @@ namespace GoodTimes.Models
         public string Opmerking { get; set; }
         public bool Acties { get; set; }
         public List<product> Products { get; set; }
+        public bon bon { get; set; }
     }
 }
