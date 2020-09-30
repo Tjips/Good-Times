@@ -30,6 +30,9 @@ namespace GoodTimes.Data
 
             modelBuilder.Entity<product>()
                 .HasOne(k => k.categorie);
+
+            modelBuilder.Entity<bestelling>()
+                .HasOne(k => k.bon);
         }
 
         public DbSet<GoodTimes.Models.reservering> reservering { get; set; }
@@ -37,6 +40,7 @@ namespace GoodTimes.Data
         public DbSet<GoodTimes.Models.categorie> categorie { get; set; }
         public DbSet<GoodTimes.Models.product> product { get; set; }
         public DbSet<GoodTimes.Models.bestelling> bestelling { get; set; }
+        public DbSet<GoodTimes.Models.bon> bon { get; set; }
     }
 
 

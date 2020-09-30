@@ -23,7 +23,7 @@ namespace GoodTimes.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.bon.Include(p => p.Tafel);
-            return View(await _context.bon.ToListAsync());
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: bon/Details/5
@@ -59,7 +59,7 @@ namespace GoodTimes.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] bon bon)
+        public async Task<IActionResult> Create([Bind("Id,Tafelnummer")] bon bon)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace GoodTimes.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] bon bon)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Tafelnummer")] bon bon)
         {
             if (id != bon.Id)
             {

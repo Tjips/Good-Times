@@ -12,9 +12,9 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                @foreach (var tafel in ViewBag.bestelling as List<bestelling>)
+                @foreach (var item in ViewBag.bestelling as List<bestelling>)
                 {
-                    <input type="radio" asp-for="Tafelnummer" value="@tafel.Tafel"> @tafel.Tafel<br />
+                <p><input type="radio" asp-for="Tafelnummer" value="@item.Tafel"> Tafel @item.Tafel</p>
                 }
             </div>
             <br />
