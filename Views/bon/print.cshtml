@@ -1,0 +1,17 @@
+﻿@model GoodTimes.Models.bon
+
+<div>
+    <p>Tafelnummer: @Html.DisplayFor(model => model.Tafelnummer)</p>
+
+    @foreach (var bon in ViewBag.bon as List<bon>)
+    {
+        @foreach (var item in ViewBag.bestelling as List<bestelling>)
+        {
+            @if (bon.Tafelnummer == item.Tafel)
+            {
+                <p>@item.Gerecht</p>
+            }
+        }
+    }
+
+</div>

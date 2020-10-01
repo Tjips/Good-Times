@@ -26,6 +26,28 @@ namespace GoodTimes.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> print(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var bon = await _context.bon
+                .Include(p => p.Tafel)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (bon == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.bestelling = await _context.bestelling.ToListAsync();
+            ViewBag.bon = await _context.bon.ToListAsync();
+
+            return View(bon);
+        }
+
         // GET: bon/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -68,7 +90,7 @@ namespace GoodTimes.Controllers
             {
                 _context.Add(bon);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Details", new { id = bon.Id });
+                return RedirectToAction("print", new { id = bon.Id });
             }
             return View();
         }
