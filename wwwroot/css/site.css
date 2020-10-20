@@ -361,3 +361,21 @@ div.panel {
     color: black;
     opacity: 0.9;
 }
+
+.bon_table_row{
+    width: 33%;
+}
+
+.bon_table {
+    width: 99%;
+}
+
+.low_margin_bot{
+    margin-bottom: -5px;
+}
+
+.thick_line {
+    color: black;
+    height: 0,5px;
+    background-color: #333;
+}

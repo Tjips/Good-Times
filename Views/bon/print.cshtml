@@ -1,17 +1,56 @@
 ﻿@model GoodTimes.Models.bon
 
-<div>
-    <p>Tafelnummer: @Html.DisplayFor(model => model.Tafelnummer)</p>
+<div id='printMe'>
+    <hr class="thick_line" />
+    <div class="text-center">
+        <img src="~/img/GoodTimeslogo.png" />
+    </div>
+    <hr class="thick_line"/>
+    <p class="low_margin_bot">Restaurant Good Times</p>
+    <p class="low_margin_bot">Straatnaam 10</p>
+    <p class="low_margin_bot">1234CA ALKMAAR</p>
+    <p class="low_margin_bot">Datum</p>
+    <p class="low_margin_bot">Tafelnummer: @Html.DisplayFor(model => model.Tafelnummer)</p>
 
-    @foreach (var bon in ViewBag.bon as List<bon>)
-    {
-        @foreach (var item in ViewBag.bestelling as List<bestelling>)
-        {
-            @if (bon.Tafelnummer == item.Tafel)
+    <hr class="thick_line"/>
+    <table class="bon_table">
+        <thead>
+            <tr>
+                <th>Gerecht</th>
+                <th>Aantal</th>
+                <th>Prijs</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bon in ViewBag.bon as List<bon>)
             {
-                <p>@item.Gerecht</p>
+                @foreach (var item in ViewBag.bestelling as List<bestelling>)
+                {
+                    @if (bon.Tafelnummer == item.Tafel)
+                    {
+                        <tr>
+                            <td class="bon_table_row">@item.Gerecht</td>
+                            <td class="bon_table_row">@item.Aantal</td>
+                            <td class="bon_table_row">€ </td>
+                        </tr>
+                    }
+                }
             }
-        }
-    }
-
+        </tbody>
+    </table>
+    <hr class="thick_line"/>
 </div>
+<button class="menu-button" onclick="printDiv('printMe')">Print</button>
+<script>
+		function printDiv(divName){
+			var printContents = document.getElementById(divName).innerHTML;
+			var originalContents = document.body.innerHTML;
+
+			document.body.innerHTML = printContents;
+
+			window.print();
+
+			document.body.innerHTML = originalContents;
+
+		}
+</script>

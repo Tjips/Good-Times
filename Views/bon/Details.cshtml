@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<div>
+<div id='printMe'>
     <p>Tafelnummer: @Html.DisplayFor(model => model.Tafelnummer)</p>
 
     @foreach (var bon in ViewBag.bon as List<bon>)
@@ -17,8 +17,22 @@
             }
         }
     }
-
-    </div>
+</div>
+<button onclick="printDiv('printMe')">Print</button>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script>
+		function printDiv(divName){
+			var printContents = document.getElementById(divName).innerHTML;
+			var originalContents = document.body.innerHTML;
+
+			document.body.innerHTML = printContents;
+
+			window.print();
+
+			document.body.innerHTML = originalContents;
+
+		}
+</script>
