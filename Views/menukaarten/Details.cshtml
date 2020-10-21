@@ -47,8 +47,8 @@
                             € @product.Prijs
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@product.Id">Bewerk</a><br />
-                            <a asp-action="Delete" asp-route-id="@product.Id">Verwijder</a>
+                            <a asp-controller="products" asp-action="Edit" asp-route-id="@product.Id">Bewerk</a><br />
+                            <a asp-controller="products" asp-action="Delete" asp-route-id="@product.Id">Verwijder</a>
                         </td>
                     </tr>
                 </tbody>
