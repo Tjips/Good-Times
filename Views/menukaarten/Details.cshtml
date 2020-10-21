@@ -4,8 +4,8 @@
 
 <div class="menu-container">
     <div class="kaas">
-        <a class="menu-button" asp-area="" asp-controller="products" asp-action="create" asp-route-id="@Html.DisplayFor(model => model.Id)">Product toevoegen</a>
-        <a class="menu-button" asp-area="" asp-controller="categories" asp-action="create" asp-route-id="@Html.DisplayFor(model => model.Id)">Categorie toevoegen</a>
+        <a class="menu-button" asp-area="" asp-controller="products" asp-action="create">Product toevoegen</a>
+        <a class="menu-button" asp-area="" asp-controller="categories" asp-action="create">Categorie toevoegen</a>
     </div>
 </div>
 
@@ -44,7 +44,7 @@
                             @product.Omschrijving
                         </td>
                         <td>
-                            @product.Prijs
+                            € @product.Prijs
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@product.Id">Bewerk</a><br />
