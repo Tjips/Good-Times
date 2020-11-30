@@ -15,7 +15,7 @@ namespace GoodTimes.Models
         [Required]
         public string Omschrijving { get; set; }
         [Required]
-        public float Prijs { get; set; }
+        public decimal Prijs { get; set; }
         public int Volgorde { get; set; }
         public categorie categorie { get; set; }
         public int categorieId { get; set; }
